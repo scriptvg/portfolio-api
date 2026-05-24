@@ -50,3 +50,15 @@ export const docsLimiter: RateLimitRequestHandler = rateLimit({
   legacyHeaders: false,
   handler: standardHandler
 });
+
+/**
+ * Limiter propio para el proxy de IA: las inferencias son caras (CPU/GPU y
+ * tiempo), así que es más restrictivo que el límite global de la API.
+ */
+export const aiLimiter: RateLimitRequestHandler = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: standardHandler
+});

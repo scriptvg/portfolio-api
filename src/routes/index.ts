@@ -10,6 +10,7 @@ import WorkspacePublicRouter from "../modules/workspace-public/workspace-public.
 import WebhooksRouter from "../modules/webhooks/webhooks.routes";
 import GithubIntegrationRouter from "../modules/github-integration/github-integration.routes";
 import DeepwikiRouter from "../modules/deepwiki/deepwiki.routes";
+import AiRouter from "../modules/ai/ai.routes";
 
 const router = Router();
 
@@ -23,5 +24,6 @@ router.use("/workspace", WorkspacePublicRouter);
 router.use("/webhooks", WebhooksRouter);
 router.use("/integrations/github", GithubIntegrationRouter);
 router.use("/deepwiki", DeepwikiRouter);
+router.use("/ai", AiRouter);
 
 export default router;
