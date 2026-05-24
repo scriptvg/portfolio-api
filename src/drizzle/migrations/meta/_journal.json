@@ -1,0 +1,90 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1778881588943,
+      "tag": "0000_cultured_ben_grimm",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1778887996827,
+      "tag": "0001_ambitious_champions",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1778889184706,
+      "tag": "0002_graceful_ares",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1778889359350,
+      "tag": "0003_fat_owl",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1779900000000,
+      "tag": "0004_clear_github_links",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1778991536018,
+      "tag": "0005_dazzling_doctor_octopus",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1779900100000,
+      "tag": "0006_user_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1779900200000,
+      "tag": "0007_projects",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1779347447887,
+      "tag": "0008_remarkable_bucky",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1779348301583,
+      "tag": "0009_powerful_mimic",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1779349105652,
+      "tag": "0010_unique_nova",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1779900300000,
+      "tag": "0011_experience_position_employment_type",
+      "breakpoints": true
+    }
+  ]
+}
