@@ -1,0 +1,9 @@
+### Technologies — lectura pública (sin auth)
+@baseUrl = http://localhost:9000/api/v1
+
+### Listar todas las tecnologías
+# Esperado: 200 { success, message, data: Technology[] }
+GET {{baseUrl}}/technologies
+
+# Nota: POST/PUT/PATCH/DELETE de technologies requieren
+# Authorization: Bearer <API_ADMIN_SECRET> y NO son públicos.

@@ -1,0 +1,23 @@
+### Projects — lectura pública (sin auth)
+@baseUrl = http://localhost:9000/api/v1
+
+# Cambia este slug por uno real de tu data sembrada.
+@slug = mi-proyecto
+
+### Listar todos los proyectos
+# Esperado: 200 { success, message, data: Project[] }
+GET {{baseUrl}}/projects
+
+### Obtener un proyecto por slug
+# Esperado: 200 con el proyecto; 404 si el slug no existe
+GET {{baseUrl}}/projects/by-slug/{{slug}}
+
+### Obtener el wiki de un proyecto por slug
+# Esperado: 200 con el contenido del wiki; 404 si no existe
+GET {{baseUrl}}/projects/by-slug/{{slug}}/wiki
+
+### Caso borde: slug inexistente -> 404
+GET {{baseUrl}}/projects/by-slug/slug-que-no-existe-xyz
+
+# Nota: POST (crear), POST /images (subir imagen), PUT/PATCH/DELETE
+# requieren Authorization: Bearer <API_ADMIN_SECRET> y NO son públicos.

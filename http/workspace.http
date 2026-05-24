@@ -1,0 +1,13 @@
+### Workspace público — el portfolio público por slug (sin auth)
+@baseUrl = http://localhost:9000/api/v1
+
+# Cambia este slug por el workspaceSlug real (user_settings.workspaceSlug).
+@slug = mi-workspace
+
+### Obtener el workspace público por slug
+# Esperado: 200 con los datos públicos del portfolio (perfil + contenido)
+# 404 si el slug no corresponde a ningún workspace
+GET {{baseUrl}}/workspace/{{slug}}
+
+### Caso borde: slug inexistente -> 404
+GET {{baseUrl}}/workspace/slug-que-no-existe-xyz
