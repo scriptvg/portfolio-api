@@ -1,0 +1,66 @@
+### Auth — entrada pública (signup / signin). Sin auth previa.
+@baseUrl = http://localhost:9000/api/v1
+
+# Estos endpoints están bajo authLimiter (5 req/min por IP).
+
+### Signup — crear cuenta con credenciales
+# Body: email, password (8–128), name? (opcional)
+# Esperado: 201 con el usuario público + token (revisar forma real en la respuesta)
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "demo@example.com",
+  "password": "demo12345",
+  "name": "Demo User"
+}
+
+### Signin — iniciar sesión con credenciales
+# Body: email, password
+# Esperado: 200 con token; 401 si credenciales inválidas
+POST {{baseUrl}}/auth/signin
+Content-Type: application/json
+
+{
+  "email": "demo@example.com",
+  "password": "demo12345"
+}
+
+###############################################################################
+# Casos borde (validación Zod)
+###############################################################################
+
+### Signup con password demasiado corta -> 400
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "demo@example.com",
+  "password": "123"
+}
+
+### Signup con email inválido -> 400
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "no-es-un-email",
+  "password": "demo12345"
+}
+
+### Signin con body vacío -> 400
+POST {{baseUrl}}/auth/signin
+Content-Type: application/json
+
+{}
+
+###############################################################################
+# OAuth (flujos de navegador — redirigen al proveedor). Solo referencia.
+# Devuelven 503 si el proveedor no está configurado en el servidor.
+###############################################################################
+
+### Iniciar OAuth con Google (redirect)
+GET {{baseUrl}}/auth/google
+
+### Iniciar OAuth con GitHub (redirect)
+GET {{baseUrl}}/auth/github

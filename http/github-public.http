@@ -1,0 +1,18 @@
+### GitHub — estadísticas públicas de repos (sin auth, con caché en servidor)
+@baseUrl = http://localhost:9000/api/v1
+
+### Stats de un repo público concreto
+# Ruta: /integrations/github/public/repos/:owner/:repo
+# Esperado: 200 con stats del repo (stars, lenguajes, etc.)
+GET {{baseUrl}}/integrations/github/public/repos/vercel/next.js
+
+### Stats en lote de varios repos
+# Query: fullNames = lista separada por comas "owner/repo,owner/repo" (máx. 30)
+# Esperado: 200 con data: array de stats (filtra los no encontrados)
+GET {{baseUrl}}/integrations/github/public/repos?fullNames=vercel/next.js,facebook/react
+
+### Caso borde: query sin fullNames -> 400
+GET {{baseUrl}}/integrations/github/public/repos
+
+# Nota: el resto de /integrations/github/* (status, connect, repos, import, link)
+# requieren Authorization: Bearer <JWT> y NO son públicos.

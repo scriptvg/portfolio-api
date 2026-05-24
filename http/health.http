@@ -1,0 +1,15 @@
+### Health — endpoints públicos (sin auth)
+@baseUrl = http://localhost:9000/api/v1
+@root = http://localhost:9000
+
+### Raíz: redirige (302) a /api/v1/health
+GET {{root}}/
+
+### Health básico — ping a la DB
+# Esperado: 200 { success, message, data: { status: "healthy", dependencies: { database } } }
+# Si la DB está caída: 503 con success:false
+GET {{baseUrl}}/health
+
+### Health detallado — info de sistema (memoria, cpu, uptime, entorno)
+# Esperado: 200 con data.memory / data.cpu / data.environment
+GET {{baseUrl}}/health/detailed

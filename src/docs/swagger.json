@@ -252,13 +252,6 @@
     "/settings/": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -269,13 +262,6 @@
     "/settings/panel": {
       "patch": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -286,13 +272,6 @@
     "/settings/notifications": {
       "patch": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -303,13 +282,6 @@
     "/settings/workspace": {
       "patch": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -320,13 +292,6 @@
     "/settings/workspace/avatar": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -335,13 +300,6 @@
       },
       "delete": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -703,13 +661,6 @@
     "/webhooks/": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -718,13 +669,6 @@
       },
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -741,11 +685,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -761,11 +700,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
             "type": "string"
           }
         ],
@@ -785,11 +719,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -807,11 +736,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
             "type": "string"
           }
         ],
@@ -836,11 +760,6 @@
             "name": "deliveryId",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
             "type": "string"
           }
         ],
@@ -874,13 +793,6 @@
     "/integrations/github/status": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -891,13 +803,6 @@
     "/integrations/github/connect": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -908,13 +813,6 @@
     "/integrations/github/disconnect": {
       "delete": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -925,13 +823,6 @@
     "/integrations/github/refresh": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -942,13 +833,6 @@
     "/integrations/github/repos": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -971,11 +855,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -988,13 +867,6 @@
     "/integrations/github/import-repo": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -1005,13 +877,6 @@
     "/integrations/github/link-repo": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "default": {
             "description": ""
@@ -1089,6 +954,150 @@
             "description": ""
           }
         }
+      }
+    },
+    "/ai/": {
+      "get": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Health del proveedor de IA configurado",
+        "description": "Devuelve disponibilidad y modelos del proveedor. 503 si no es reachable.",
+        "responses": {
+          "200": {
+            "description": "Proveedor reachable (ProviderHealth en data)"
+          },
+          "503": {
+            "description": "Proveedor no reachable (envoltura success:false)"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/ai/chat": {
+      "post": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Chat completion (one-shot o streaming SSE)",
+        "description": "Si stream:false devuelve ChatResponse envuelto. Si stream:true responde text/event-stream (SSE): eventos data: con ChatStreamChunk y cierre data: [DONE]. El modo SSE es una excepcion deliberada a la envoltura JSON estandar.",
+        "produces": [
+          "text/event-stream"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "messages": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "example": "user"
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "Hola"
+                      }
+                    }
+                  }
+                },
+                "model": {
+                  "type": "string",
+                  "example": "llama3.1"
+                },
+                "temperature": {
+                  "type": "number",
+                  "example": 0.7
+                },
+                "maxTokens": {
+                  "type": "number",
+                  "example": 512
+                },
+                "stream": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ChatResponse (JSON) o stream SSE segun stream"
+          },
+          "404": {
+            "description": "Modelo inexistente"
+          },
+          "502": {
+            "description": "Respuesta invalida del proveedor"
+          },
+          "503": {
+            "description": "Proveedor no disponible / timeout"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/ai/embeddings": {
+      "post": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Genera embeddings de uno o varios textos",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "array",
+                  "example": [
+                    "texto a vectorizar"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "model": {
+                  "type": "string",
+                  "example": "nomic-embed-text"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "EmbeddingResponse (embeddings: number[][]) en data"
+          },
+          "503": {
+            "description": "Proveedor no disponible / timeout"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   }

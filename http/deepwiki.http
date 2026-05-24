@@ -1,0 +1,31 @@
+### DeepWiki — proxy de documentación de repos (HOY público; ver nota de seguridad)
+@baseUrl = http://localhost:9000/api/v1
+
+# Estos endpoints están bajo docsLimiter / apiLimiter.
+# ⚠️ La auditoría marcó /ask como Hallazgo Alto #3 (proxy LLM sin auth).
+@owner = facebook
+@repo = react
+
+### Estructura de la wiki de un repo
+# Ruta: /deepwiki/:owner/:repo/structure
+# Esperado: 200 { success, message, data: { content } }
+GET {{baseUrl}}/deepwiki/{{owner}}/{{repo}}/structure
+
+### Contenidos de la wiki de un repo
+GET {{baseUrl}}/deepwiki/{{owner}}/{{repo}}/contents
+
+### Preguntar a la wiki (proxy hacia DeepWiki)
+# Body: { question: string } (obligatorio)
+# Esperado: 200 con data.content; 400 si falta 'question'
+POST {{baseUrl}}/deepwiki/{{owner}}/{{repo}}/ask
+Content-Type: application/json
+
+{
+  "question": "What is this repository about?"
+}
+
+### Caso borde: ask sin question -> 400
+POST {{baseUrl}}/deepwiki/{{owner}}/{{repo}}/ask
+Content-Type: application/json
+
+{}

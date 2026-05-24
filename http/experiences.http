@@ -1,0 +1,9 @@
+### Experiences — lectura pública (sin auth)
+@baseUrl = http://localhost:9000/api/v1
+
+### Listar todas las experiencias laborales
+# Esperado: 200 { success, message, data: Experience[] }
+GET {{baseUrl}}/experiences
+
+# Nota: POST/PUT/PATCH/DELETE de experiences requieren
+# Authorization: Bearer <API_ADMIN_SECRET> y NO son públicos.
