@@ -1,0 +1,14 @@
+{
+  "$schema": "https://servercn.vercel.app/schema/servercn.config.json",
+  "version": "2.0.5",
+  "rootDir": ".",
+  "packageManager": "pnpm",
+  "runtime": "node",
+  "language": "typescript",
+  "framework": "express",
+  "architecture": "feature",
+  "database": {
+    "engine": "mysql",
+    "adapter": "drizzle"
+  }
+}
