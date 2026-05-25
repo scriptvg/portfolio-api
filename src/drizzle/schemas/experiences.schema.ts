@@ -13,7 +13,8 @@ export const EMPLOYMENT_TYPES = [
   "internship",
   "contract",
   "freelance",
-  "volunteer"
+  "volunteer",
+  "bootcamp"
 ] as const;
 
 export type EmploymentType = (typeof EMPLOYMENT_TYPES)[number];
