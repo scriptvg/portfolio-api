@@ -42,6 +42,36 @@ export const envSchema = z
       .min(16, "SESSION_SECRET must be at least 16 characters"),
 
     JWT_SECRET: z.string().min(16, "JWT_SECRET must be at least 16 characters"),
+    /**
+     * TTL del access token (formato ms / vercel/ms compatible con jsonwebtoken,
+     * p. ej. "15m", "1h"). Default: 15 minutos.
+     */
+    ACCESS_TOKEN_TTL: z.string().default("15m"),
+    /**
+     * TTL del refresh token en segundos. Default: 30 días = 2592000 s.
+     * Se usa tanto para la cookie Max-Age como para calcular expiresAt en DB.
+     */
+    REFRESH_TOKEN_TTL_SECONDS: z.coerce
+      .number()
+      .int()
+      .positive()
+      .default(2592000),
+
+    /**
+     * Ventana de gracia (en segundos) para la detección de reuse de refresh
+     * tokens. Si un token ya rotado se presenta dentro de esta ventana desde
+     * su revocación, se trata como una carrera legítima entre pestañas/
+     * dispositivos (no como robo) y se responde 401 sin revocar toda la cadena.
+     * Fuera de la ventana, o si el token fue revocado por logout explícito
+     * (replacedBy === null), se mantiene la revocación de cadena completa.
+     * Default: 30 segundos.
+     */
+    REFRESH_TOKEN_REUSE_GRACE_SECONDS: z.coerce
+      .number()
+      .int()
+      .nonnegative()
+      .default(30),
+    /** @deprecated Usar ACCESS_TOKEN_TTL. Mantenido por compatibilidad con código anterior. */
     JWT_EXPIRES_IN: z.string().default("7d"),
 
     /**

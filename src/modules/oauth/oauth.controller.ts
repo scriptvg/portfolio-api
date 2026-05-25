@@ -8,6 +8,8 @@ import {
   unlinkGitHubFromUser,
   unlinkGoogleFromUser
 } from "@/modules/oauth/oauth.service";
+import { createRefreshToken } from "@/modules/auth/services/refresh-token.service";
+import { setRefreshCookie } from "@/modules/auth/utils/refresh-cookie";
 import { ApiError } from "@/shared/errors/api-error";
 import { ApiResponse } from "@/shared/utils/api-response";
 import { signAccessToken } from "@/shared/utils/jwt";
@@ -76,12 +78,20 @@ function oauthSuccessRedirect(req: Request, res: Response, next: NextFunction) {
 
   const token = signAccessToken({ sub: user.id, email: user.email });
 
-  req.logout(err => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect(clientCallbackUrl(token));
-  });
+  // Emitir el refresh token como cookie httpOnly antes del redirect.
+  // El logout de Passport elimina req.user de la sesión (solo usada en el
+  // flujo OAuth), pero la cookie del refresh persiste para el cliente SPA.
+  createRefreshToken(user.id)
+    .then(({ plainToken }) => {
+      setRefreshCookie(res, plainToken);
+      req.logout(err => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(clientCallbackUrl(token));
+      });
+    })
+    .catch(next);
 }
 
 export async function getMe(req: Request, res: Response) {

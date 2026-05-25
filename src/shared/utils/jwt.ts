@@ -6,7 +6,9 @@ export type AccessTokenPayload = { sub: string; email: string };
 
 export function signAccessToken(payload: AccessTokenPayload): string {
   const options: SignOptions = {
-    expiresIn: env.JWT_EXPIRES_IN as SignOptions["expiresIn"]
+    // ACCESS_TOKEN_TTL es la fuente canónica (default "15m").
+    // JWT_EXPIRES_IN se mantiene por retro-compatibilidad pero ya no se lee aquí.
+    expiresIn: env.ACCESS_TOKEN_TTL as SignOptions["expiresIn"]
   };
   return jwt.sign(payload, env.JWT_SECRET, options);
 }

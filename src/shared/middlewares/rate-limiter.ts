@@ -62,3 +62,19 @@ export const aiLimiter: RateLimitRequestHandler = rateLimit({
   legacyHeaders: false,
   handler: standardHandler
 });
+
+/**
+ * Limiter holgado para /auth/refresh y /auth/logout.
+ *
+ * Estos endpoints NO deben caer bajo authLimiter (5/min): el cliente los llama
+ * legítimamente cada ~15 minutos cuando el access token expira, y el logout
+ * puede llamarse en cualquier momento. Se usa un límite de 30/min para
+ * prevenir abuso sin estrangular el flujo normal de la SPA.
+ */
+export const refreshLimiter: RateLimitRequestHandler = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: standardHandler
+});

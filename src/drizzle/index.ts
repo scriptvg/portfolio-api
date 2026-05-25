@@ -10,3 +10,4 @@ export * from "./schemas/project-technologies.schema";
 export * from "./schemas/webhooks.schema";
 export * from "./schemas/webhook-deliveries.schema";
 export * from "./schemas/github-integrations.schema";
+export * from "./schemas/refresh-tokens.schema";

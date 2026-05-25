@@ -26,10 +26,16 @@ import {
   redirectGoogleLink
 } from "@/modules/auth/controller/link-oauth.controller";
 import {
+  refreshTokens,
+  logout
+} from "@/modules/auth/controller/refresh.controller";
+import {
   isGitHubOAuthEnabled,
   isGoogleOAuthEnabled
 } from "@/shared/configs/env";
 import { requireJwt } from "@/shared/middlewares/require-jwt";
+import { requireKnownOrigin } from "@/shared/middlewares/require-known-origin";
+import { authLimiter, refreshLimiter } from "@/shared/middlewares/rate-limiter";
 
 const router = Router();
 
@@ -81,12 +87,25 @@ if (isGitHubOAuthEnabled()) {
 router.delete("/unlink/github", requireJwt, unlinkGitHub);
 router.delete("/unlink/google", requireJwt, unlinkGoogle);
 
-router.post("/signup", signup);
-router.post("/signin", signin);
+// authLimiter (5 req/min) solo en los endpoints de credenciales sensibles:
+// signup y signin son superficies de fuerza bruta; change-password es de alto
+// valor si un JWT queda expuesto. El resto del router cae bajo el apiLimiter
+// global (100/min), suficiente para GET /me, callbacks OAuth y links de proveedor.
+router.post("/signup", authLimiter, signup);
+router.post("/signin", authLimiter, signin);
 router.post("/link/password", requireJwt, linkPassword);
 
 router.get("/me", requireJwt, getMe);
 router.patch("/me", requireJwt, patchMe);
-router.post("/change-password", requireJwt, changePassword);
+router.post("/change-password", requireJwt, authLimiter, changePassword);
+
+// Refresh y logout usan refreshLimiter (30/min), NO authLimiter (5/min),
+// porque el cliente llama a /refresh legítimamente cada ~15 min.
+// requireKnownOrigin va antes del rate-limiter para rechazar orígenes
+// desconocidos sin consumir cuota — pero el orden funcional es correcto en
+// cualquier caso. El middleware valida Origin/Referer para mitigar CSRF simple
+// requests (POST sin body no dispara preflight con SameSite=None en prod).
+router.post("/refresh", requireKnownOrigin, refreshLimiter, refreshTokens);
+router.post("/logout", requireKnownOrigin, refreshLimiter, logout);
 
 export default router;

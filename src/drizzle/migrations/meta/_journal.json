@@ -85,6 +85,13 @@
       "when": 1779900300000,
       "tag": "0011_experience_position_employment_type",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1779670788739,
+      "tag": "0012_simple_rogue",
+      "breakpoints": true
     }
   ]
 }

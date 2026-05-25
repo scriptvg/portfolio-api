@@ -1,7 +1,6 @@
 import { Router } from "express";
 import HealthRouter from "../modules/health/health.routes";
 import OAuthRouter from "../modules/oauth/oauth.routes";
-import { authLimiter } from "@/shared/middlewares/rate-limiter";
 import TechnologiesRouter from "../modules/technologies/technologies.routes";
 import ExperiencesRouter from "../modules/experiences/experiences.routes";
 import ProjectsRouter from "../modules/projects/projects.routes";
@@ -15,7 +14,9 @@ import AiRouter from "../modules/ai/ai.routes";
 const router = Router();
 
 router.use("/health", HealthRouter);
-router.use("/auth", authLimiter, OAuthRouter);
+// authLimiter se aplica por ruta en oauth.routes.ts, no a nivel de router,
+// para no estrangular los endpoints de lectura/bootstrap (GET /auth/me, callbacks OAuth).
+router.use("/auth", OAuthRouter);
 router.use("/settings", SettingsRouter);
 router.use("/technologies", TechnologiesRouter);
 router.use("/experiences", ExperiencesRouter);

@@ -6,6 +6,8 @@ import { z } from "zod";
 import db from "@/db";
 import { usersTable } from "@/drizzle/schemas/user.schema";
 import { findUserByEmail, findUserById } from "@/modules/oauth/oauth.service";
+import { createRefreshToken } from "@/modules/auth/services/refresh-token.service";
+import { setRefreshCookie } from "@/modules/auth/utils/refresh-cookie";
 import { ApiError } from "@/shared/errors/api-error";
 import { ApiResponse } from "@/shared/utils/api-response";
 import { signAccessToken } from "@/shared/utils/jwt";
@@ -154,6 +156,9 @@ export async function signup(req: Request, res: Response) {
     email: created.email
   });
 
+  const { plainToken: refreshPlain } = await createRefreshToken(created.id);
+  setRefreshCookie(res, refreshPlain);
+
   return ApiResponse.created(res, "Account created", {
     token,
     user: toPublicUser(created)
@@ -209,6 +214,9 @@ export async function signin(req: Request, res: Response) {
     sub: user.id,
     email: user.email
   });
+
+  const { plainToken: refreshPlain } = await createRefreshToken(user.id);
+  setRefreshCookie(res, refreshPlain);
 
   return ApiResponse.Success(res, "Signed in", {
     token,
