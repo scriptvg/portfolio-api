@@ -7,14 +7,14 @@ import {
   varchar
 } from "drizzle-orm/mysql-core";
 
+// "bootcamp" removed — education/studies now live in the education entity (TICKET-029).
 export const EMPLOYMENT_TYPES = [
   "full_time",
   "part_time",
   "internship",
   "contract",
   "freelance",
-  "volunteer",
-  "bootcamp"
+  "volunteer"
 ] as const;
 
 export type EmploymentType = (typeof EMPLOYMENT_TYPES)[number];

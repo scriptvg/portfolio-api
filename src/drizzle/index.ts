@@ -11,3 +11,5 @@ export * from "./schemas/webhooks.schema";
 export * from "./schemas/webhook-deliveries.schema";
 export * from "./schemas/github-integrations.schema";
 export * from "./schemas/refresh-tokens.schema";
+export * from "./schemas/education.schema";
+export * from "./schemas/education-technologies.schema";
